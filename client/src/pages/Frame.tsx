@@ -62,7 +62,8 @@ export const Frame = (): JSX.Element => {
         <img
           src="/figmaAssets/logo-nobg.png"
           alt="e-trotineti.rs"
-          className="h-12 w-auto object-contain"
+          className="w-auto object-contain"
+          style={{ height: 100, marginTop: -16, marginBottom: -16 }}
         />
         <motion.button
           data-testid="button-nav-start"

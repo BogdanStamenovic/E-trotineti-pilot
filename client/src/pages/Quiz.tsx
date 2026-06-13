@@ -662,8 +662,8 @@ export default function Quiz() {
         <img
           src="/figmaAssets/logo-nobg.png"
           alt="e-trotineti.rs"
-          className="h-12 w-auto object-contain"
-          style={{ cursor: "pointer" }}
+          className="w-auto object-contain"
+          style={{ height: 100, marginTop: -16, marginBottom: -16, cursor: "pointer" }}
           onClick={() => (window.location.href = "/")}
         />
         {!showResults && (
