@@ -185,6 +185,31 @@ export const Frame = (): JSX.Element => {
           </motion.div>
         </div>
 
+        {/* Small-screen badge: placed after stats to push images downward on mobile */}
+        <motion.div
+          initial={{ opacity: 0, y: 10, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 0.7, type: "spring", stiffness: 200 }}
+          className="block lg:hidden rounded-2xl px-5 py-3.5 flex items-center gap-3 mx-auto mt-10 max-w-[92vw]"
+          style={{
+            ...glass,
+          }}
+        >
+          <img
+            src="/favicon.png"
+            alt="scooter"
+            className="w-8 h-8 flex-shrink-0 object-contain"
+          />
+          <div>
+            <div className="text-[13px] font-semibold" style={{ color: "#0A0A0A" }}>
+              Dualtron · Teverun · Kaabo
+            </div>
+            <div className="text-[11px]" style={{ color: "rgba(10,10,10,0.45)" }}>
+              3 premium brenda · nezavisni vodič
+            </div>
+          </div>
+        </motion.div>
+
         {/* Right — photo grid */}
         <div className="flex-1 flex justify-center lg:justify-end w-full lg:w-auto">
           <motion.div
@@ -233,13 +258,12 @@ export const Frame = (): JSX.Element => {
               initial={{ opacity: 0, y: 10, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 0.7, type: "spring", stiffness: 200 }}
-              className="absolute rounded-2xl px-5 py-3.5 flex items-center gap-3"
+              className="hidden lg:absolute rounded-2xl px-5 py-3.5 flex items-center gap-3 whitespace-nowrap"
               style={{
                 ...glass,
-                bottom: -14,
                 left: "50%",
+                bottom: -14,
                 transform: "translateX(-50%)",
-                whiteSpace: "nowrap",
               }}
             >
               <img
