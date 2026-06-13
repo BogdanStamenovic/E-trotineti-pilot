@@ -225,7 +225,6 @@ function ScoreBar({ brand, percentage, delay }: { brand: Brand; percentage: numb
     <div className="mb-4">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-          <span className="text-lg">{info.emoji}</span>
           <span
             className="font-semibold text-[14px]"
             style={{ color: "#0A0A0A", fontFamily: "Inter, Helvetica, sans-serif" }}
@@ -311,7 +310,7 @@ function HybridCard({
             className="text-[12px] font-medium"
             style={{ color: "rgba(10,10,10,0.45)", fontFamily: "Inter, Helvetica, sans-serif" }}
           >
-            {p.emoji} {p.name} × {s.emoji} {s.name}
+            {p.name} × {s.name}
           </span>
         </div>
         {model.confidence === "high" && (

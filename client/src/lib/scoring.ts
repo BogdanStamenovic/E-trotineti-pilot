@@ -151,7 +151,6 @@ export const brandInfo: Record<
     description: string;
     color: string;
     bgLight: string;
-    emoji: string;
   }
 > = {
   dualtron: {
@@ -162,7 +161,6 @@ export const brandInfo: Record<
       "Ikonični status, entuzijastička kultura, sirova snaga i odana globalna zajednica. Dualtron predstavlja vrhunac performansi električnih skutera za vozače koji ne prihvataju ništa osim najboljeg.",
     color: "#B53A32",
     bgLight: "#fdf0ef",
-    emoji: "⚡",
   },
   teverun: {
     name: "Teverun",
@@ -172,7 +170,6 @@ export const brandInfo: Record<
       "Futuristička dizajnerska filozofija, inovativna pametna tehnologija i čistija estetika. Teverun je napravljen za naprednog vozača koji ceni inteligenciju jednako kao i snagu.",
     color: "#2563EB",
     bgLight: "#eff6ff",
-    emoji: "🔮",
   },
   kaabo: {
     name: "Kaabo",
@@ -182,7 +179,6 @@ export const brandInfo: Record<
       "Čvrst, stabilan i napravljen za svaki teren. Kaabo uliva sigurnost bilo da se krećete gradskim ulicama ili daleko izvan utabanih staza.",
     color: "#16A34A",
     bgLight: "#f0fdf4",
-    emoji: "🏔️",
   },
 };
 

@@ -86,28 +86,6 @@ export const Frame = (): JSX.Element => {
       <main className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-0 px-6 sm:px-10 pt-12 pb-16 max-w-[1400px] mx-auto">
         {/* Left — text */}
         <div className="flex-1 max-w-[580px]">
-          <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6"
-            style={{
-              background: "rgba(181,58,50,0.09)",
-              border: "1px solid rgba(181,58,50,0.18)",
-            }}
-          >
-            <span
-              className="w-1.5 h-1.5 rounded-full"
-              style={{ background: "#B53A32" }}
-            />
-            <span
-              className="text-[12px] font-semibold uppercase tracking-[0.12em]"
-              style={{ color: "#B53A32" }}
-            >
-              e-trotineti.rs — tvoj vodič
-            </span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
