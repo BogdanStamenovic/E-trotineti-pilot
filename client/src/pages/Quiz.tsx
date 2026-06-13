@@ -5,11 +5,14 @@ import {
   quizSteps,
   brandInfo,
   calculateResults,
+  detectEdgeCase,
+  getHybridRecommendation,
   generatePersonalizedText,
   generateExpertAssessment,
   type Brand,
   type QuizOption,
   type QuizStep,
+  type HybridModel,
 } from "@/lib/scoring";
 
 const glass = {
@@ -207,7 +210,7 @@ function InsightCard({
           cursor: "pointer",
         }}
       >
-        {isLast ? "See My Results" : "Continue"}
+        {isLast ? "Vidi rezultate" : "Nastavi"}
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M3 8h10M9 4l4 4-4 4" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -259,9 +262,179 @@ function ScoreBar({ brand, percentage, delay }: { brand: Brand; percentage: numb
   );
 }
 
+function HybridCard({
+  model,
+  primaryBrand,
+  secondaryBrand,
+}: {
+  model: HybridModel;
+  primaryBrand: Brand;
+  secondaryBrand: Brand;
+}) {
+  const p = brandInfo[primaryBrand];
+  const s = brandInfo[secondaryBrand];
+  const specs = [
+    { label: "Snaga (peak)", value: `${(model.specs.motorPeakW / 1000).toFixed(1)} kW` },
+    { label: "Brzina", value: `${model.specs.topSpeedKmh} km/h` },
+    ...(model.specs.rangeKm ? [{ label: "Domet", value: `~${model.specs.rangeKm} km` }] : []),
+    { label: "Težina", value: `${model.specs.weightKg} kg` },
+    { label: "Cena", value: model.specs.priceRange },
+    { label: "Gume", value: model.specs.tires },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 22 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.72, type: "spring", stiffness: 260, damping: 26 }}
+      className="rounded-2xl overflow-hidden mb-5"
+      style={{ border: "1.5px solid rgba(181,58,50,0.18)" }}
+    >
+      {/* Header band */}
+      <div
+        className="px-6 py-4 flex items-center justify-between gap-3"
+        style={{
+          background: "linear-gradient(105deg, rgba(181,58,50,0.07) 0%, rgba(255,255,255,0.55) 100%)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          borderBottom: "1px solid rgba(181,58,50,0.10)",
+        }}
+      >
+        <div className="flex items-center gap-3">
+          <div
+            className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-widest"
+            style={{ background: "rgba(181,58,50,0.12)", color: "#B53A32" }}
+          >
+            Granični slučaj
+          </div>
+          <span
+            className="text-[12px] font-medium"
+            style={{ color: "rgba(10,10,10,0.45)", fontFamily: "Inter, Helvetica, sans-serif" }}
+          >
+            {p.emoji} {p.name} × {s.emoji} {s.name}
+          </span>
+        </div>
+        {model.confidence === "high" && (
+          <div
+            className="w-2 h-2 rounded-full"
+            style={{ background: "#16A34A", boxShadow: "0 0 6px rgba(22,163,74,0.5)" }}
+          />
+        )}
+      </div>
+
+      {/* Body */}
+      <div
+        className="px-6 py-5"
+        style={{
+          background: "rgba(255,255,255,0.48)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+        }}
+      >
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.18em] mb-1"
+          style={{ color: "#B53A32", fontFamily: "Inter, Helvetica, sans-serif" }}
+        >
+          Hibridna preporuka
+        </p>
+        <div className="flex items-baseline gap-2 mb-1">
+          <h3
+            className="font-bold text-[22px] leading-tight"
+            style={{ color: "#0A0A0A", fontFamily: "Inter, Helvetica, sans-serif" }}
+          >
+            {model.model}
+          </h3>
+          <span
+            className="text-[14px] font-medium"
+            style={{ color: "rgba(10,10,10,0.4)", fontFamily: "Inter, Helvetica, sans-serif" }}
+          >
+            by {model.manufacturer}
+          </span>
+        </div>
+
+        {/* Spec pills */}
+        <div className="flex flex-wrap gap-2 mt-3 mb-4">
+          {specs.map((s) => (
+            <div
+              key={s.label}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[12px]"
+              style={{
+                background: "rgba(10,10,10,0.05)",
+                color: "#0A0A0A",
+                fontFamily: "Inter, Helvetica, sans-serif",
+              }}
+            >
+              <span style={{ color: "rgba(10,10,10,0.4)" }}>{s.label}</span>
+              <span className="font-semibold">{s.value}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Suspension + battery row */}
+        <div
+          className="text-[12px] mb-4 leading-relaxed"
+          style={{ color: "rgba(10,10,10,0.45)", fontFamily: "Inter, Helvetica, sans-serif" }}
+        >
+          <span className="font-medium" style={{ color: "rgba(10,10,10,0.6)" }}>Baterija:</span>{" "}
+          {model.specs.battery} · <span className="font-medium" style={{ color: "rgba(10,10,10,0.6)" }}>Ovešenje:</span>{" "}
+          {model.specs.suspension}
+        </div>
+
+        {/* Rationale */}
+        <p
+          className="text-[14px] leading-relaxed mb-4"
+          style={{ color: "rgba(10,10,10,0.7)", fontFamily: "Inter, Helvetica, sans-serif" }}
+        >
+          {model.rationale}
+        </p>
+
+        {/* Traits */}
+        <div className="flex flex-wrap gap-1.5 mb-5">
+          {model.traits.map((trait) => (
+            <span
+              key={trait}
+              className="px-2 py-0.5 rounded-md text-[11px] font-medium"
+              style={{
+                background: "rgba(181,58,50,0.07)",
+                color: "#8D2A24",
+                fontFamily: "Inter, Helvetica, sans-serif",
+              }}
+            >
+              {trait}
+            </span>
+          ))}
+        </div>
+
+        {/* CTA */}
+        {model.url && (
+          <a
+            href={model.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold"
+            style={{
+              background: "#0A0A0A",
+              color: "#fff",
+              textDecoration: "none",
+              fontFamily: "Inter, Helvetica, sans-serif",
+            }}
+          >
+            Saznaj više
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
 function ResultsScreen({ answers }: { answers: Record<string, string> }) {
   const [, setLocation] = useLocation();
-  const { percentages, primary, secondary, confidence } = calculateResults(answers);
+  const { scores, percentages, primary, secondary, confidence } = calculateResults(answers);
+  const isEdgeCase = detectEdgeCase(scores, percentages, primary, secondary);
+  const hybridModel = isEdgeCase ? getHybridRecommendation(answers, primary, secondary) : null;
   const personalizedText = generatePersonalizedText(answers, primary, secondary);
   const expertAssessment = generateExpertAssessment(answers, primary);
   const info = brandInfo[primary];
@@ -295,7 +468,7 @@ function ResultsScreen({ answers }: { answers: Record<string, string> }) {
             className="text-[11px] font-semibold uppercase tracking-[0.18em] mb-3"
             style={{ color: "rgba(255,255,255,0.4)", fontFamily: "Inter, Helvetica, sans-serif" }}
           >
-            Your Best Match
+            Vaš idealan izbor
           </motion.p>
 
           <div className="flex items-start justify-between gap-4">
@@ -344,7 +517,7 @@ function ResultsScreen({ answers }: { answers: Record<string, string> }) {
                 className="text-[12px] mt-1"
                 style={{ color: "rgba(255,255,255,0.35)", fontFamily: "Inter, Helvetica, sans-serif" }}
               >
-                Match Score
+                Poklapanje
               </div>
             </motion.div>
           </div>
@@ -396,7 +569,7 @@ function ResultsScreen({ answers }: { answers: Record<string, string> }) {
           className="text-[11px] font-semibold uppercase tracking-[0.18em] mb-3"
           style={{ color: "#B53A32", fontFamily: "Inter, Helvetica, sans-serif" }}
         >
-          Why This Fits You
+          Zašto ovo odgovara vama
         </p>
         <p
           className="text-[15px] leading-relaxed"
@@ -418,7 +591,7 @@ function ResultsScreen({ answers }: { answers: Record<string, string> }) {
           className="text-[11px] font-semibold uppercase tracking-[0.18em] mb-5"
           style={{ color: "#B53A32", fontFamily: "Inter, Helvetica, sans-serif" }}
         >
-          Brand Comparison
+          Poređenje brendova
         </p>
         {revealBars && (
           <>
@@ -429,11 +602,20 @@ function ResultsScreen({ answers }: { answers: Record<string, string> }) {
         )}
       </motion.div>
 
+      {/* Hybrid recommendation — only shown on edge cases */}
+      {hybridModel && (
+        <HybridCard
+          model={hybridModel}
+          primaryBrand={primary}
+          secondaryBrand={secondary}
+        />
+      )}
+
       {/* Professional Opinion */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8 }}
+        transition={{ delay: hybridModel ? 1.0 : 0.8 }}
         className="rounded-2xl p-7 mb-8"
         style={glassDeep}
       >
@@ -450,7 +632,7 @@ function ResultsScreen({ answers }: { answers: Record<string, string> }) {
             className="text-[11px] font-semibold uppercase tracking-[0.18em]"
             style={{ color: "#B53A32", fontFamily: "Inter, Helvetica, sans-serif" }}
           >
-            Professional Opinion
+            Stručna ocena
           </p>
         </div>
         <p
@@ -482,7 +664,7 @@ function ResultsScreen({ answers }: { answers: Record<string, string> }) {
           }}
           onClick={() => window.location.reload()}
         >
-          Retake the Guide
+          Ponovi kviz
         </motion.button>
         <motion.button
           data-testid="button-home"
@@ -498,7 +680,7 @@ function ResultsScreen({ answers }: { answers: Record<string, string> }) {
           }}
           onClick={() => setLocation("/")}
         >
-          Back to Home
+          Nazad na početak
         </motion.button>
       </motion.div>
     </motion.div>
@@ -547,7 +729,7 @@ function QuizStepView({
           className="text-[12px] font-semibold uppercase tracking-[0.15em] mb-3"
           style={{ color: "rgba(10,10,10,0.35)", fontFamily: "Inter, Helvetica, sans-serif" }}
         >
-          Step {stepIndex + 1} of {totalSteps}
+          Korak {stepIndex + 1} od {totalSteps}
         </p>
         <h2
           className="font-bold leading-tight"
@@ -678,7 +860,7 @@ export default function Quiz() {
               fontFamily: "Inter, Helvetica, sans-serif",
             }}
           >
-            Results Ready
+            Rezultati su spremni
           </span>
         )}
       </header>
