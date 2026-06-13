@@ -19,26 +19,26 @@ export interface QuizStep {
 export const quizSteps: QuizStep[] = [
   {
     id: "usage",
-    question: "How do you plan to ride?",
-    insightTitle: "Riding Context",
+    question: "Kako planirate da vozite?",
+    insightTitle: "Kontekst vožnje",
     insight:
-      "Your primary use case determines which features matter most. City riders benefit from smart connectivity and efficient power management. Performance enthusiasts demand raw output and range. Adventure riders require durability and off-road capability above all else.",
+      "Vaša primarna namena određuje koje karakteristike su najvažnije. Gradski vozači imaju koristi od pametne povezivosti i efikasnog upravljanja energijom. Entuzijasti performansi zahtevaju sirovu snagu i domet. Avanturisti iznad svega cene izdržljivost i sposobnost vožnje van asfalta.",
     options: [
-      { id: "city", label: "Daily city commuting", scores: { teverun: 3, kaabo: 1 } },
-      { id: "mixed", label: "Mixed city and longer rides", scores: { teverun: 2, dualtron: 2 } },
-      { id: "weekend", label: "Weekend adventure", scores: { kaabo: 3, dualtron: 1 } },
-      { id: "highperf", label: "High-performance riding", scores: { dualtron: 3, teverun: 1 } },
-      { id: "offroad", label: "Off-road exploration", scores: { kaabo: 4 } },
+      { id: "city", label: "Svakodnevna gradska vožnja", scores: { teverun: 3, kaabo: 1 } },
+      { id: "mixed", label: "Mešovito — grad i duže rute", scores: { teverun: 2, dualtron: 2 } },
+      { id: "weekend", label: "Vikend avanture", scores: { kaabo: 3, dualtron: 1 } },
+      { id: "highperf", label: "Visokoperformansna vožnja", scores: { dualtron: 3, teverun: 1 } },
+      { id: "offroad", label: "Vožnja van asfalta", scores: { kaabo: 4 } },
     ],
   },
   {
     id: "range",
-    question: "How far do you usually travel?",
-    insightTitle: "Range & Battery",
+    question: "Koliko obično prelazite po vožnji?",
+    insightTitle: "Domet i baterija",
     insight:
-      "Range is determined by battery capacity, motor efficiency, and rider weight. High-performance scooters achieve longer ranges through larger battery packs, while smart power management systems significantly extend practical range in urban environments.",
+      "Domet zavisi od kapaciteta baterije, efikasnosti motora i težine vozača. Visokoperformansni skuteri postižu veći domet zahvaljujući većim baterijama, dok sistemi pametnog upravljanja energijom značajno produžuju praktičan domet u gradskim uslovima.",
     options: [
-      { id: "under20", label: "Under 20 km", scores: { teverun: 1, kaabo: 1, dualtron: 1 } },
+      { id: "under20", label: "Ispod 20 km", scores: { teverun: 1, kaabo: 1, dualtron: 1 } },
       { id: "20to40", label: "20–40 km", scores: { teverun: 3, kaabo: 1 } },
       { id: "40to70", label: "40–70 km", scores: { dualtron: 3, teverun: 1 } },
       { id: "over70", label: "70+ km", scores: { dualtron: 4 } },
@@ -46,63 +46,63 @@ export const quizSteps: QuizStep[] = [
   },
   {
     id: "performance",
-    question: "How important is power?",
-    insightTitle: "Power & Performance",
+    question: "Koliko vam je važna snaga motora?",
+    insightTitle: "Snaga i performanse",
     insight:
-      "Performance scooters typically feature dual motors, delivering superior acceleration and higher top speeds. They are ideal for experienced riders who prioritize dynamic performance. Balanced options offer excellent real-world performance without the extremes of a racing-focused platform.",
+      "Visokoperformansni skuteri obično imaju dva motora, što pruža odlično ubrzanje i veće brzine. Idealni su za iskusne vozače koji prioritizuju dinamičke performanse. Uravnotežene opcije nude odličan svakodnevni učinak bez ekstrema trkačke platforme.",
     options: [
-      { id: "notimportant", label: "Not important", sublabel: "Comfort over speed", scores: { teverun: 1, kaabo: 1 } },
-      { id: "balanced", label: "Balanced", sublabel: "Best of both worlds", scores: { teverun: 2, kaabo: 2 } },
-      { id: "veryimportant", label: "Very important", sublabel: "Strong performance matters", scores: { dualtron: 3, teverun: 1 } },
-      { id: "maximum", label: "Maximum performance", sublabel: "Push every limit", scores: { dualtron: 4 } },
+      { id: "notimportant", label: "Nije važno", sublabel: "Udobnost pre brzine", scores: { teverun: 1, kaabo: 1 } },
+      { id: "balanced", label: "Uravnoteženo", sublabel: "Sve i svašta", scores: { teverun: 2, kaabo: 2 } },
+      { id: "veryimportant", label: "Veoma važno", sublabel: "Dobre performanse su bitne", scores: { dualtron: 3, teverun: 1 } },
+      { id: "maximum", label: "Maksimalne performanse", sublabel: "Bez kompromisa", scores: { dualtron: 4 } },
     ],
   },
   {
     id: "personality",
-    question: "Which statement sounds most like you?",
-    insightTitle: "Rider Profile",
+    question: "Koja rečenica vas najbolje opisuje?",
+    insightTitle: "Profil vozača",
     insight:
-      "The best scooter is an extension of who you are. Brand identity matters as much as technical specifications — when your personality aligns with a brand's philosophy, the riding experience becomes truly personal.",
+      "Najbolji skuter je produžetak vašeg karaktera. Identitet brenda je jednako važan kao tehnički podaci — kada vaša ličnost odgovara filozofiji brenda, iskustvo vožnje postaje zaista lično.",
     options: [
       {
         id: "practical",
-        label: '"I want something practical."',
-        sublabel: "Efficiency and reliability first",
+        label: '"Hoću nešto praktično."',
+        sublabel: "Efikasnost i pouzdanost na prvom mestu",
         scores: { teverun: 3, kaabo: 1 },
       },
       {
         id: "tech",
-        label: '"I love technology."',
-        sublabel: "Innovation and smart features",
+        label: '"Volim tehnologiju."',
+        sublabel: "Inovacije i pametne funkcije",
         scores: { teverun: 4 },
       },
       {
         id: "iconic",
-        label: '"I want something powerful and iconic."',
-        sublabel: "Status and performance identity",
+        label: '"Hoću nešto moćno i ikonično."',
+        sublabel: "Status i performansni identitet",
         scores: { dualtron: 4 },
       },
       {
         id: "anywhere",
-        label: '"I want to go anywhere."',
-        sublabel: "Freedom and exploration",
+        label: '"Hoću da idem svuda."',
+        sublabel: "Sloboda i istraživanje",
         scores: { kaabo: 4 },
       },
     ],
   },
   {
     id: "priority",
-    question: "What matters most?",
-    insightTitle: "Core Values",
+    question: "Šta vam je najvažnije?",
+    insightTitle: "Osnovne vrednosti",
     insight:
-      "Your core priority reveals the experience you are seeking. Each premium brand has been engineered with specific values in mind — matching your priorities to a brand's philosophy creates a truly ideal pairing.",
+      "Vaš primarni prioritet otkriva iskustvo koje tražite. Svaki premium brend je projektovan sa specifičnim vrednostima — usklađivanje vaših prioriteta sa filozofijom brenda stvara savršen spoj.",
     options: [
-      { id: "comfort", label: "Comfort", scores: { teverun: 3, kaabo: 1 } },
-      { id: "technology", label: "Technology", scores: { teverun: 4 } },
-      { id: "performance", label: "Performance", scores: { dualtron: 4 } },
-      { id: "adventure", label: "Adventure", scores: { kaabo: 4 } },
-      { id: "stability", label: "Stability", scores: { kaabo: 3, dualtron: 1 } },
-      { id: "design", label: "Design", scores: { dualtron: 3, teverun: 2 } },
+      { id: "comfort", label: "Udobnost", scores: { teverun: 3, kaabo: 1 } },
+      { id: "technology", label: "Tehnologija", scores: { teverun: 4 } },
+      { id: "performance", label: "Performanse", scores: { dualtron: 4 } },
+      { id: "adventure", label: "Avantura", scores: { kaabo: 4 } },
+      { id: "stability", label: "Stabilnost", scores: { kaabo: 3, dualtron: 1 } },
+      { id: "design", label: "Dizajn", scores: { dualtron: 3, teverun: 2 } },
     ],
   },
 ];
@@ -121,30 +121,30 @@ export const brandInfo: Record<
 > = {
   dualtron: {
     name: "Dualtron",
-    tagline: "Premium Performance",
-    message: "This is more than a scooter. It's a lifestyle.",
+    tagline: "Premium performanse",
+    message: "Ovo nije samo skuter. Ovo je način života.",
     description:
-      "Iconic status, enthusiast culture, raw power and a devoted global community. Dualtron represents the pinnacle of electric scooter performance for riders who demand nothing but the absolute best.",
+      "Ikonični status, entuzijastička kultura, sirova snaga i odana globalna zajednica. Dualtron predstavlja vrhunac performansi električnih skutera za vozače koji ne prihvataju ništa osim najboljeg.",
     color: "#B53A32",
     bgLight: "#fdf0ef",
     emoji: "⚡",
   },
   teverun: {
     name: "Teverun",
-    tagline: "Smart Performance",
-    message: "The next generation of performance scooters.",
+    tagline: "Pametne performanse",
+    message: "Sledeća generacija performansnih skutera.",
     description:
-      "Futuristic design philosophy, innovative smart technology, and a cleaner aesthetic. Teverun is engineered for the forward-thinking rider who values intelligence as much as power.",
+      "Futuristička dizajnerska filozofija, inovativna pametna tehnologija i čistija estetika. Teverun je napravljen za naprednog vozača koji ceni inteligenciju jednako kao i snagu.",
     color: "#2563EB",
     bgLight: "#eff6ff",
     emoji: "🔮",
   },
   kaabo: {
     name: "Kaabo",
-    tagline: "Adventure & Durability",
-    message: "When the road ends, the ride begins.",
+    tagline: "Avantura i izdržljivost",
+    message: "Kada se asfalt završi, vožnja počinje.",
     description:
-      "Rugged, stable, and built for any terrain. Kaabo inspires confidence whether navigating city streets or venturing far beyond the beaten path.",
+      "Čvrst, stabilan i napravljen za svaki teren. Kaabo uliva sigurnost bilo da se krećete gradskim ulicama ili daleko izvan utabanih staza.",
     color: "#16A34A",
     bgLight: "#f0fdf4",
     emoji: "🏔️",
@@ -193,25 +193,25 @@ export function generatePersonalizedText(
   secondary: Brand
 ): string {
   const usageMap: Record<string, string> = {
-    city: "daily city commuting",
-    mixed: "mixed urban and long-distance riding",
-    weekend: "weekend adventure riding",
-    highperf: "high-performance riding",
-    offroad: "off-road exploration",
+    city: "svakodnevnu gradsku vožnju",
+    mixed: "mešovitu gradsku i daljinsku vožnju",
+    weekend: "vikend avanture",
+    highperf: "visokoperformansnu vožnju",
+    offroad: "vožnju van asfalta",
   };
   const rangeMap: Record<string, string> = {
-    under20: "short urban trips",
-    "20to40": "medium-range rides",
-    "40to70": "extended touring distances",
-    over70: "long-distance performance runs",
+    under20: "kratke gradske ture",
+    "20to40": "vožnje srednje dužine",
+    "40to70": "duže ture",
+    over70: "duge performansne rute",
   };
 
-  const usage = usageMap[answers.usage] || "versatile riding";
-  const range = rangeMap[answers.range] || "varied distances";
+  const usage = usageMap[answers.usage] || "raznovrsnu vožnju";
+  const range = rangeMap[answers.range] || "različite distance";
   const p = brandInfo[primary];
   const s = brandInfo[secondary];
 
-  return `Based on your preference for ${usage} and ${range}, ${p.name} emerges as the strongest match for your profile. Your answers reflect a consistent alignment with ${p.tagline.toLowerCase()} — the defining characteristic of the ${p.name} experience. ${s.name} would also serve you well as a compelling secondary choice that shares several of your priorities.`;
+  return `Na osnovu vaše preferencije za ${usage} i ${range}, ${p.name} se izdvaja kao najjači izbor za vaš profil. Vaši odgovori ukazuju na dosleden sklad sa ${p.tagline.toLowerCase()} — što definiše iskustvo koje ${p.name} pruža. ${s.name} bi vam takođe odlično odgovarao kao ubedljiv drugi izbor koji deli nekoliko vaših prioriteta.`;
 }
 
 export function generateExpertAssessment(
@@ -222,10 +222,10 @@ export function generateExpertAssessment(
   const personality = answers.personality;
 
   if (primary === "dualtron") {
-    return `Considering your riding profile and expectations, we would recommend focusing on premium performance platforms that offer uncompromising output. Your profile indicates a strong preference for ${perf === "maximum" ? "maximum performance output and iconic design status" : "high-end performance paired with a strong riding identity"}. Dualtron's engineering philosophy — built around raw capability and a devoted global community — aligns precisely with the rider archetype you represent.`;
+    return `Uzimajući u obzir vaš profil vožnje i očekivanja, preporučujemo fokus na premium performansne platforme koje ne prave kompromise po pitanju snage. Vaš profil ukazuje na snažnu preferenciju za ${perf === "maximum" ? "maksimalnim performansama i ikoničnim dizajnom" : "vrhunskim performansama uz jak identitet vozača"}. Dualtronova inženjerska filozofija — izgrađena oko sirove sposobnosti i odane globalne zajednice — precizno se poklapa sa tipom vozača kojeg vi predstavljate.`;
   } else if (primary === "teverun") {
-    return `Considering your riding habits and expectations, we would recommend focusing on smart-performance platforms that blend technology with capability. Your profile indicates a clear preference for ${personality === "tech" ? "advanced technological integration and next-generation features" : "intelligent design, practical performance, and a future-oriented riding experience"}. Teverun's commitment to innovation and refined engineering creates an ideal match for your riding style.`;
+    return `Uzimajući u obzir vaše navike vožnje i očekivanja, preporučujemo fokus na pametno-performansne platforme koje spajaju tehnologiju i sposobnost. Vaš profil ukazuje na jasnu preferenciju za ${personality === "tech" ? "naprednom tehnološkom integracijom i funkcijama nove generacije" : "inteligentnim dizajnom, praktičnim performansama i iskustvom orijentisanim prema budućnosti"}. Teverunova posvećenost inovacijama i preciznom inženjeringu stvara idealan spoj za vaš stil vožnje.`;
   } else {
-    return `Considering your riding profile and expectations, we would recommend focusing on adventure-oriented platforms engineered for durability and versatile terrain capability. Your profile indicates a clear preference for ${personality === "anywhere" ? "unrestricted exploration and off-road confidence" : "rugged stability and reliable performance across any condition"}. Kaabo's design philosophy — building for the rider who refuses to be limited by terrain — precisely aligns with your aspirations.`;
+    return `Uzimajući u obzir vaš profil vožnje i očekivanja, preporučujemo fokus na avanturističke platforme projektovane za izdržljivost i svestrane terenske mogućnosti. Vaš profil ukazuje na jasnu preferenciju za ${personality === "anywhere" ? "neograničenim istraživanjem i sigurnošću van asfalta" : "čvrstom stabilnošću i pouzdanim performansama u svakom uslovu"}. Kaabova dizajnerska filozofija — graditi za vozača koji odbija da ga ograniči teren — precizno se poklapa sa vašim aspiracijama.`;
   }
 }
