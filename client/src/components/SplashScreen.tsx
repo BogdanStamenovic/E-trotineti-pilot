@@ -85,59 +85,22 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
             }}
           />
 
-          {/* Scooter icon — no-bg, inverted white */}
+          {/* Logo — proper no-bg, inverted white on dark */}
           <motion.img
-            src="/figmaAssets/image-2-nobg.png"
-            alt=""
-            aria-hidden="true"
+            src="/figmaAssets/logo-nobg.png"
+            alt="e-trotineti.rs"
             initial={{ opacity: 0, scale: 0.65, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.34, 1.35, 0.64, 1], delay: 0.15 }}
             style={{
               position: "relative",
               zIndex: 1,
-              width: "min(200px, 48vw)",
+              width: "min(260px, 60vw)",
               height: "auto",
               objectFit: "contain",
-              filter: "brightness(0) invert(1) drop-shadow(0 0 18px rgba(255,255,255,0.15))",
+              filter: "brightness(0) invert(1) drop-shadow(0 2px 20px rgba(255,255,255,0.12))",
             }}
           />
-
-          {/* Brand name text */}
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: "easeOut", delay: 0.72 }}
-            style={{
-              position: "relative",
-              zIndex: 1,
-              marginTop: 20,
-              display: "flex",
-              alignItems: "baseline",
-              gap: 0,
-              fontFamily: "Inter, Helvetica, sans-serif",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            <span
-              style={{
-                fontSize: 22,
-                fontWeight: 700,
-                color: "rgba(255,255,255,0.92)",
-              }}
-            >
-              e-trotineti
-            </span>
-            <span
-              style={{
-                fontSize: 22,
-                fontWeight: 700,
-                color: "#B53A32",
-              }}
-            >
-              .rs
-            </span>
-          </motion.div>
 
           {/* Red accent line */}
           <motion.div

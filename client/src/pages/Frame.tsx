@@ -60,9 +60,9 @@ export const Frame = (): JSX.Element => {
         style={{ borderBottom: "1px solid rgba(0,0,0,0.06)" }}
       >
         <img
-          src="/figmaAssets/image-2.png"
+          src="/figmaAssets/logo-nobg.png"
           alt="e-trotineti.rs"
-          className="h-9 w-auto object-contain"
+          className="h-12 w-auto object-contain"
         />
         <motion.button
           data-testid="button-nav-start"
