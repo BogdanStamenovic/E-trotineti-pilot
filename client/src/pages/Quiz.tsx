@@ -94,20 +94,17 @@ function OptionCard({
   option,
   selected,
   onClick,
-  disabled,
 }: {
   option: QuizOption;
   selected: boolean;
   onClick: () => void;
-  disabled: boolean;
 }) {
   return (
     <motion.button
       data-testid={`option-${option.id}`}
       onClick={onClick}
-      disabled={disabled}
-      whileHover={!disabled ? { scale: 1.02, y: -2 } : {}}
-      whileTap={!disabled ? { scale: 0.98 } : {}}
+      whileHover={{ scale: 1.02, y: -2 }}
+      whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       className="w-full text-left rounded-2xl p-5 cursor-pointer relative overflow-hidden"
       style={{
@@ -523,11 +520,12 @@ function QuizStepView({
   const insightRef = useRef<HTMLDivElement>(null);
 
   function handleSelect(optionId: string) {
-    if (selected) return;
     setSelected(optionId);
-    setTimeout(() => {
-      insightRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }, 200);
+    if (!selected) {
+      setTimeout(() => {
+        insightRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 200);
+    }
   }
 
   const colClass =
@@ -570,7 +568,6 @@ function QuizStepView({
             option={option}
             selected={selected === option.id}
             onClick={() => handleSelect(option.id)}
-            disabled={!!selected && selected !== option.id}
           />
         ))}
       </div>
