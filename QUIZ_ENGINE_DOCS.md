@@ -18,7 +18,7 @@ Engine evaluira svaki odgovor u odnosu na tri brenda:
 | Brend | Identitet | Osnovne vrednosti |
 |---|---|---|
 | **Dualtron** | Premium performanse | Sirova snaga, top brzina, ikonični status, entuzijastička kultura |
-| **Teverun** | Pametne performanse | Tehnologija, inovacije, futuristički dizajn, pametne funkcije |
+| **Teverun** | Pametne performanse | Inovacije, futuristički dizajn, pametne funkcije |
 | **Kaabo** | Avantura i izdržljivost | Sposobnost van asfalta, čvrsta stabilnost, istraživanje, svestranost |
 
 Svaki brend ima boju, tagline, kratak opis i emoji koji se koriste na ekranu rezultata.
@@ -35,7 +35,7 @@ Svaki brend ima boju, tagline, kratak opis i emoji koji se koriste na ekranu rez
 | `city` | Svakodnevna gradska vožnja | Teverun +3, Kaabo +1 |
 | `mixed` | Mešovito — grad i duže rute | Teverun +2, Dualtron +2 |
 | `weekend` | Vikend avanture | Kaabo +3, Dualtron +1 |
-| `highperf` | Visokoperformansna vožnja | Dualtron +3, Teverun +1 |
+| `highperf` | Brza vožnja | Dualtron +3, Teverun +1 |
 | `offroad` | Vožnja van asfalta | Kaabo +4 |
 
 **Šta otkriva:** Primarni kontekst vožnje — da li korisnik treba pametnu gradsku efikasnost, dugometražne ture ili terenske sposobnosti.
@@ -76,7 +76,7 @@ Svaki brend ima boju, tagline, kratak opis i emoji koji se koriste na ekranu rez
 | Opcija | Oznaka | Podnaslov | Dati bodovi |
 |---|---|---|---|
 | `practical` | "Hoću nešto praktično." | Efikasnost i pouzdanost na prvom mestu | Teverun +3, Kaabo +1 |
-| `tech` | "Volim tehnologiju." | Inovacije i pametne funkcije | Teverun +4 |
+| `tech` | "Cenim inovacije." | Inovacije i praktične funkcije | Teverun +4 |
 | `iconic` | "Hoću nešto moćno i ikonično." | Status i performansni identitet | Dualtron +4 |
 | `anywhere` | "Hoću da idem svuda." | Sloboda i istraživanje | Kaabo +4 |
 
@@ -90,7 +90,7 @@ Svaki brend ima boju, tagline, kratak opis i emoji koji se koriste na ekranu rez
 | Opcija | Oznaka | Dati bodovi |
 |---|---|---|
 | `comfort` | Udobnost | Teverun +3, Kaabo +1 |
-| `technology` | Tehnologija | Teverun +4 |
+| `domet` | Domet | Teverun +4 |
 | `performance` | Performanse | Dualtron +4 |
 | `adventure` | Avantura | Kaabo +4 |
 | `stability` | Stabilnost | Kaabo +3, Dualtron +1 |
@@ -146,7 +146,7 @@ Najviše bodova koje jedan brend može skupiti (ako su svi odgovori maksimalni s
 | Brend | Maksimalni zbir | Postiže se izborom |
 |---|---|---|
 | Dualtron | 4+4+4+4+4 = **20** | `highperf`, `over70`, `maximum`, `iconic`, `performance` |
-| Teverun | 3+3+2+4+4 = **16** | `city`, `20to40`, `balanced`, `tech`, `technology` |
+| Teverun | 3+3+2+4+4 = **16** | `city`, `20to40`, `balanced`, `tech`, `domet` |
 | Kaabo | 4+1+2+4+4 = **15** | `offroad`, `under20`, `balanced`, `anywhere`, `adventure` |
 
 > Dualtron ima najveću moguću koncentraciju bodova jer prima 4 poena na 4 od 5 pitanja, što ga čini brendom koji je najlakše "maksimizovati."
@@ -187,7 +187,7 @@ Pošto mnoge opcije daju bodove **samo jednom brendu**, nekoliko snažno usklađ
 |---|---|
 | `offroad` + `anywhere` + `adventure` | Kaabo na ~60–70% sigurnosti |
 | `over70` + `maximum` + `iconic` + `performance` | Dualtron na ~70–80% sigurnosti |
-| `city` + `20to40` + `tech` + `technology` | Teverun na ~65–75% sigurnosti |
+| `city` + `20to40` + `tech` + `domet` | Teverun na ~65–75% sigurnosti |
 
 Mešoviti signali (npr. `balanced` performanse + `20to40` domet + `practical` ličnost) daju bliže trostrane podele sa nižim procentima sigurnosti (30–45%).
 

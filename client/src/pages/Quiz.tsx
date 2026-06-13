@@ -553,6 +553,27 @@ function ResultsScreen({ answers }: { answers: Record<string, string> }) {
           >
             {info.description}
           </motion.p>
+          {info.url && (
+            <div className="mt-4">
+              <a
+                href={info.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold"
+                style={{
+                  background: "#fff",
+                  color: "#0A0A0A",
+                  textDecoration: "none",
+                  fontFamily: "Inter, Helvetica, sans-serif",
+                }}
+              >
+                Pogledaj modele i cene
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 7h10M8 3l4 4-4 4" stroke="#0A0A0A" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </div>
+          )}
         </div>
       </motion.div>
 

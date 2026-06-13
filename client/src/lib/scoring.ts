@@ -60,7 +60,7 @@ export const quizSteps: QuizStep[] = [
       { id: "city", label: "Svakodnevna gradska vožnja", scores: { teverun: 3, kaabo: 1 } },
       { id: "mixed", label: "Mešovito — grad i duže rute", scores: { teverun: 2, dualtron: 2 } },
       { id: "weekend", label: "Vikend avanture", scores: { kaabo: 3, dualtron: 1 } },
-      { id: "highperf", label: "Visokoperformansna vožnja", scores: { dualtron: 3, teverun: 1 } },
+      { id: "highperf", label: "Brza vožnja", scores: { dualtron: 3, teverun: 1 } },
       { id: "offroad", label: "Vožnja van asfalta", scores: { kaabo: 4 } },
     ],
   },
@@ -69,7 +69,7 @@ export const quizSteps: QuizStep[] = [
     question: "Koliko obično prelazite po vožnji?",
     insightTitle: "Domet i baterija",
     insight:
-      "Domet zavisi od kapaciteta baterije, efikasnosti motora i težine vozača. Visokoperformansni skuteri postižu veći domet zahvaljujući većim baterijama, dok sistemi pametnog upravljanja energijom značajno produžuju praktičan domet u gradskim uslovima.",
+      "Domet zavisi od kapaciteta baterije, efikasnosti motora i težine vozača. Visokoperformansni trotineti postižu veći domet zahvaljujući većim baterijama, dok sistemi pametnog upravljanja energijom značajno produžuju praktičan domet u gradskim uslovima.",
     options: [
       { id: "under20", label: "Ispod 20 km", scores: { teverun: 1, kaabo: 1, dualtron: 1 } },
       { id: "20to40", label: "20–40 km", scores: { teverun: 3, kaabo: 1 } },
@@ -82,7 +82,7 @@ export const quizSteps: QuizStep[] = [
     question: "Koliko vam je važna snaga motora?",
     insightTitle: "Snaga i performanse",
     insight:
-      "Visokoperformansni skuteri obično imaju dva motora, što pruža odlično ubrzanje i veće brzine. Idealni su za iskusne vozače koji prioritizuju dinamičke performanse. Uravnotežene opcije nude odličan svakodnevni učinak bez ekstrema trkačke platforme.",
+      "Visokoperformansni trotineti obično imaju dva motora, što pruža odlično ubrzanje i veće brzine. Idealni su za iskusne vozače koji prioritizuju dinamičke performanse. Uravnotežene opcije nude odličan svakodnevni učinak bez ekstrema trkačke platforme.",
     options: [
       { id: "notimportant", label: "Nije važno", sublabel: "Udobnost pre brzine", scores: { teverun: 1, kaabo: 1 } },
       { id: "balanced", label: "Uravnoteženo", sublabel: "Sve i svašta", scores: { teverun: 2, kaabo: 2 } },
@@ -95,7 +95,7 @@ export const quizSteps: QuizStep[] = [
     question: "Koja rečenica vas najbolje opisuje?",
     insightTitle: "Profil vozača",
     insight:
-      "Najbolji skuter je produžetak vašeg karaktera. Identitet brenda je jednako važan kao tehnički podaci — kada vaša ličnost odgovara filozofiji brenda, iskustvo vožnje postaje zaista lično.",
+      "Najbolji trotinet je produžetak vašeg karaktera. Identitet brenda je jednako važan kao tehnički podaci — kada vaša ličnost odgovara filozofiji brenda, iskustvo vožnje postaje zaista lično.",
     options: [
       {
         id: "practical",
@@ -105,8 +105,8 @@ export const quizSteps: QuizStep[] = [
       },
       {
         id: "tech",
-        label: '"Volim tehnologiju."',
-        sublabel: "Inovacije i pametne funkcije",
+        label: '"Cenim inovacije."',
+        sublabel: "Inovacije i praktične funkcije",
         scores: { teverun: 4 },
       },
       {
@@ -131,7 +131,7 @@ export const quizSteps: QuizStep[] = [
       "Vaš primarni prioritet otkriva iskustvo koje tražite. Svaki premium brend je projektovan sa specifičnim vrednostima — usklađivanje vaših prioriteta sa filozofijom brenda stvara savršen spoj.",
     options: [
       { id: "comfort", label: "Udobnost", scores: { teverun: 3, kaabo: 1 } },
-      { id: "technology", label: "Tehnologija", scores: { teverun: 4 } },
+      { id: "domet", label: "Domet", scores: { teverun: 4 } },
       { id: "performance", label: "Performanse", scores: { dualtron: 4 } },
       { id: "adventure", label: "Avantura", scores: { kaabo: 4 } },
       { id: "stability", label: "Stabilnost", scores: { kaabo: 3, dualtron: 1 } },
@@ -155,19 +155,21 @@ export const brandInfo: Record<
 > = {
   dualtron: {
     name: "Dualtron",
-    tagline: "Premium performanse",
-    message: "Ovo nije samo skuter. Ovo je način života.",
+    tagline: "Snaga i Brzina",
+    message: "Ovo nije trotinet. Ovo je način života.",
     description:
-      "Ikonični status, entuzijastička kultura, sirova snaga i odana globalna zajednica. Dualtron predstavlja vrhunac performansi električnih skutera za vozače koji ne prihvataju ništa osim najboljeg.",
+      "Ikonični status, entuzijastička kultura, sirova snaga i odana globalna zajednica. Dualtron predstavlja vrhunac performansi električnih trotineta za vozače koji ne prihvataju ništa osim najboljeg.",
+    url: "https://dualtron-shop.com",
     color: "#B53A32",
     bgLight: "#fdf0ef",
   },
   teverun: {
     name: "Teverun",
-    tagline: "Pametne performanse",
-    message: "Sledeća generacija performansnih skutera.",
+    tagline: "Snaga i Domet",
+    message: "Sledeća generacija performansnih trotineta.",
     description:
-      "Futuristička dizajnerska filozofija, inovativna pametna tehnologija i čistija estetika. Teverun je napravljen za naprednog vozača koji ceni inteligenciju jednako kao i snagu.",
+      "Futuristička dizajnerska filozofija, inovativni pristupi i čistija estetika. Teverun je napravljen za naprednog vozača koji ceni inteligenciju jednako kao i snagu.",
+    url: "https://teverun.com",
     color: "#2563EB",
     bgLight: "#eff6ff",
   },
@@ -177,6 +179,7 @@ export const brandInfo: Record<
     message: "Kada se asfalt završi, vožnja počinje.",
     description:
       "Čvrst, stabilan i napravljen za svaki teren. Kaabo uliva sigurnost bilo da se krećete gradskim ulicama ili daleko izvan utabanih staza.",
+    url: "https://www.kaabousa.com",
     color: "#16A34A",
     bgLight: "#f0fdf4",
   },
@@ -201,7 +204,7 @@ export const hybridModels: HybridModel[] = [
       tires: "11\" tubeless",
       priceRange: "~$4.000",
     },
-    traits: ["Tehnologija i inovacije", "Sirova snaga", "Vrhunske performanse", "Pametni BMS"],
+    traits: ["Inovacije", "Sirova snaga", "Vrhunske performanse", "Pametni BMS"],
     rationale:
       "Kombinuje Dualtronovu ekstremalnu snagu (4.900W peak, 85 km/h) sa Teverunovim naprednim tehničkim karakterom: pametni BMS, TFT ekran, Bluetooth, precizno hidrauličko ovešenje i app kontrola. Veoma jak urbani model koji, uz visok nivo udobnosti i sigurnosti (kočnice sa 4 klipa, TCS), predstavlja idealan spoj performansi i tehnologije.",
     conditions: [
@@ -209,7 +212,7 @@ export const hybridModels: HybridModel[] = [
       { stepId: "range", options: ["40to70"] },
       { stepId: "performance", options: ["veryimportant"] },
       { stepId: "personality", options: ["tech"] },
-      { stepId: "priority", options: ["technology", "design"] },
+      { stepId: "priority", options: ["domet", "design"] },
     ],
     confidence: "high",
     url: "https://teverun.com/product/fighter-eleven-plus/",
@@ -229,9 +232,9 @@ export const hybridModels: HybridModel[] = [
       tires: "10\" tubeless",
       priceRange: "$3.500–4.000",
     },
-    traits: ["Premium urbani skuter", "Snažni motori", "Pametne opcije", "LED signalizacija"],
+    traits: ["Premium urbani trotinet", "Snažni motori", "Pametne opcije", "LED signalizacija"],
     rationale:
-      "Victor je projektovan kao premium urbani skuter: snažni motori (do 80 km/h) i udobna konstrukcija (dugačka platforma, stabilno ovešenje) tipični su za Dualtron. Istovremeno donosi moderne tehnološke opcije — pametni EY4 ekran, kontrola putem mobilne aplikacije i LED signalizacija — koje podsećaju na Teverunov tehnološki karakter.",
+      "Victor je projektovan kao premium urbani trotinet: snažni motori (do 80 km/h) i udobna konstrukcija (dugačka platforma, stabilno ovešenje) tipični su za Dualtron. Istovremeno donosi moderne tehnološke opcije — pametni EY4 ekran, kontrola putem mobilne aplikacije i LED signalizacija — koje podsećaju na Teverunov tehnološki karakter.",
     conditions: [
       { stepId: "usage", options: ["city", "mixed"] },
       { stepId: "range", options: ["40to70"] },
@@ -285,7 +288,7 @@ export const hybridModels: HybridModel[] = [
       tires: "13\"",
       priceRange: "5.000$+",
     },
-    traits: ["Ekstremna snaga i brzina", "Vrhunska tehnologija", "TFT ekran", "Keyless sistem"],
+    traits: ["Ekstremna snaga i brzina", "Vrhunske inovacije", "TFT ekran", "Keyless sistem"],
     rationale:
       "Najjača kombinacija oba brenda: 15 kW motorske snage i 200 km dometa svrstavaju ga u Dualtronov ekstremni teritorijum performansi. Uz to uključuje sve Teverun inovacije: sofisticirani TFT ekran, pametnu aplikaciju, keyless sistem i premium komponente (hidrauličko ovešenje, kočnice sa 4 klipa). Za entuzijaste koji žele i brutalnu snagu i najnoviju tehnologiju.",
     conditions: [
@@ -293,7 +296,7 @@ export const hybridModels: HybridModel[] = [
       { stepId: "range", options: ["over70"] },
       { stepId: "performance", options: ["maximum"] },
       { stepId: "personality", options: ["iconic", "tech"] },
-      { stepId: "priority", options: ["performance", "technology"] },
+      { stepId: "priority", options: ["performance", "domet"] },
     ],
     confidence: "high",
     url: "https://teverun.com/product/fighter-supreme-7260r/",
@@ -430,13 +433,13 @@ export const hybridModels: HybridModel[] = [
     },
     traits: ["4WD pogon", "Ekstremni domet (200 km)", "GPS i OTA ažuriranja", "Pametni ekosistem"],
     rationale:
-      "Pravi SUV sveta skutera: 4WD pogon i ogromna baterija (200 km dometa) daju mu karakteristike vrhunskih terenskih modela u Kaabo stilu, dok je istovremeno prepun Teverun pametnih funkcija — TFT ekran, GPS, keyless sistem i OTA ažuriranja. Mobilni kamp-vozilo koje može svuda i traje danima, a kontroliše se putem aplikacije. Savršen spoj avanturističkog duha i tehnološkog luksuza.",
+      "Pravi SUV među trotinetima: 4WD pogon i ogromna baterija (200 km dometa) daju mu karakteristike vrhunskih terenskih modela u Kaabo stilu, dok je istovremeno prepun Teverun pametnih funkcija — TFT ekran, GPS, keyless sistem i OTA ažuriranja. Mobilni kamp-vozilo koje može svuda i traje danima, a kontroliše se putem aplikacije. Savršen spoj avanturističkog duha i tehnološkog luksuza.",
     conditions: [
       { stepId: "usage", options: ["offroad", "weekend"] },
       { stepId: "range", options: ["over70"] },
       { stepId: "performance", options: ["balanced"] },
       { stepId: "personality", options: ["anywhere", "tech"] },
-      { stepId: "priority", options: ["adventure", "technology"] },
+      { stepId: "priority", options: ["adventure", "domet"] },
     ],
     confidence: "high",
     url: "https://teverun.com/product/teverun-tetra/",
@@ -458,13 +461,13 @@ export const hybridModels: HybridModel[] = [
     },
     traits: ["Dobre performanse i upravljivost", "Moderan dizajn i HUD", "Sklopiv", "Hidrauličko ovešenje"],
     rationale:
-      "Sportskija Mantis serija: dobar spoj performansi i tehnologije. Veća baterija i brža vožnja od baznih Mantis modela, uz relativno laku i sklopivu konstrukciju pogodnu za gradsku upotrebu (Teverun vrednosti). Hidrauličko ovešenje i snažniji motor od standardnih gradskih skutera pružaju Kaabo avanturizam. Kvalitetno LED osvetljenje i LCD ekran daju mu tehnički karakter sličan Teverunovom.",
+      "Sportskija Mantis serija: dobar spoj performansi i tehnologije. Veća baterija i brža vožnja od baznih Mantis modela, uz relativno laku i sklopivu konstrukciju pogodnu za gradsku upotrebu (Teverun vrednosti). Hidrauličko ovešenje i snažniji motor od standardnih gradskih trotineti pružaju Kaabo avanturizam. Kvalitetno LED osvetljenje i LCD ekran daju mu tehnički karakter sličan Teverunovom.",
     conditions: [
       { stepId: "usage", options: ["mixed"] },
       { stepId: "range", options: ["20to40", "40to70"] },
       { stepId: "performance", options: ["veryimportant"] },
       { stepId: "personality", options: ["practical", "tech"] },
-      { stepId: "priority", options: ["stability", "technology"] },
+      { stepId: "priority", options: ["stability", "domet"] },
     ],
     confidence: "medium",
     url: "https://www.rydology.com/products/mantis-king-gt-60v-24ah-1100w-dual-motors",
@@ -486,13 +489,13 @@ export const hybridModels: HybridModel[] = [
     },
     traits: ["Ultralak i sklopiv", "Visok nivo udobnosti", "NFC ekran sa USB", "Pet modova vožnje"],
     rationale:
-      "Ultralagan hibrid: manji motori i baterija, ali visok nivo udobnosti (hidrauličko podešavanje na 15 nivoa, dobre gume). Prednost je prenosivost (lako se sklapa) i pametni detalji (NFC ekran sa USB, pet modova vožnje) koji ga čine pogodnim za grad u Teverun stilu. Istovremeno je dobro napravljen i za blago grublje staze, za razliku od čistih commuter skutera.",
+      "Ultralagan hibrid: manji motori i baterija, ali visok nivo udobnosti (hidrauličko podešavanje na 15 nivoa, dobre gume). Prednost je prenosivost (lako se sklapa) i pametni detalji (NFC ekran sa USB, pet modova vožnje) koji ga čine pogodnim za grad u Teverun stilu. Istovremeno je dobro napravljen i za blago grublje staze, za razliku od čistih gradskih trotineta.",
     conditions: [
       { stepId: "usage", options: ["city", "mixed"] },
       { stepId: "range", options: ["under20", "20to40"] },
       { stepId: "performance", options: ["balanced"] },
       { stepId: "personality", options: ["practical"] },
-      { stepId: "priority", options: ["comfort", "technology"] },
+      { stepId: "priority", options: ["comfort", "domet"] },
     ],
     confidence: "medium",
     url: "https://alienrides.com/products/kaabo-mantis-x-plus-dual-motor-electric-scooter",
@@ -520,7 +523,7 @@ export const hybridModels: HybridModel[] = [
       { stepId: "range", options: ["20to40"] },
       { stepId: "performance", options: ["balanced"] },
       { stepId: "personality", options: ["tech", "practical"] },
-      { stepId: "priority", options: ["technology", "stability"] },
+      { stepId: "priority", options: ["domet", "stability"] },
     ],
     confidence: "low",
   },
@@ -637,11 +640,11 @@ export function generateExpertAssessment(
   const perf = answers.performance;
   const personality = answers.personality;
 
-  if (primary === "dualtron") {
-    return `Uzimajući u obzir vaš profil vožnje i očekivanja, preporučujemo fokus na premium performansne platforme koje ne prave kompromise po pitanju snage. Vaš profil ukazuje na snažnu preferenciju za ${perf === "maximum" ? "maksimalnim performansama i ikoničnim dizajnom" : "vrhunskim performansama uz jak identitet vozača"}. Dualtronova inženjerska filozofija — izgrađena oko sirove sposobnosti i odane globalne zajednice — precizno se poklapa sa tipom vozača kojeg vi predstavljate.`;
+   if (primary === "dualtron") {
+    return `Uzimajući u obzir vaš stil vožnje i očekivanja, preporučujemo fokus na premium performansne platforme koje ne prave kompromise po pitanju snage. Vaš stil vožnje ukazuje na snažnu preferenciju za ${perf === "maximum" ? "maksimalnim performansama i ikoničnim dizajnom" : "vrhunskim performansama uz jak identitet vozača"}. Dualtronova inženjerska filozofija — izgrađena oko sirove sposobnosti i odane globalne zajednice — precizno se poklapa sa tipom vozača kojeg vi predstavljate.`;
   } else if (primary === "teverun") {
-    return `Uzimajući u obzir vaše navike vožnje i očekivanja, preporučujemo fokus na pametno-performansne platforme koje spajaju tehnologiju i sposobnost. Vaš profil ukazuje na jasnu preferenciju za ${personality === "tech" ? "naprednom tehnološkom integracijom i funkcijama nove generacije" : "inteligentnim dizajnom, praktičnim performansama i iskustvom orijentisanim prema budućnosti"}. Teverunova posvećenost inovacijama i preciznom inženjeringu stvara idealan spoj za vaš stil vožnje.`;
+    return `Uzimajući u obzir vaš stil vožnje i očekivanja, preporučujemo fokus na pametno-performansne platforme koje spajaju tehnologiju i sposobnost. Vaš stil vožnje ukazuje na jasnu preferenciju za ${personality === "tech" ? "naprednom tehnološkom integracijom i funkcijama nove generacije" : "inteligentnim dizajnom, praktičnim performansama i iskustvom orijentisanim prema budućnosti"}. Teverunova posvećenost inovacijama i preciznom inženjeringu stvara idealan spoj za vaš stil vožnje.`;
   } else {
-    return `Uzimajući u obzir vaš profil vožnje i očekivanja, preporučujemo fokus na avanturističke platforme projektovane za izdržljivost i svestrane terenske mogućnosti. Vaš profil ukazuje na jasnu preferenciju za ${personality === "anywhere" ? "neograničenim istraživanjem i sigurnošću van asfalta" : "čvrstom stabilnošću i pouzdanim performansama u svakom uslovu"}. Kaabova dizajnerska filozofija — graditi za vozača koji odbija da ga ograniči teren — precizno se poklapa sa vašim aspiracijama.`;
+    return `Uzimajući u obzir vaš stil vožnje i očekivanja, preporučujemo fokus na avanturističke platforme projektovane za izdržljivost i svestrane terenske mogućnosti. Vaš stil vožnje ukazuje na jasnu preferenciju za ${personality === "anywhere" ? "neograničenim istraživanjem i sigurnošću van asfalta" : "čvrstom stabilnošću i pouzdanim performansama u svakom uslovu"}. Kaabova dizajnerska filozofija — graditi za vozača koji odbija da ga ograniči teren — precizno se poklapa sa vašim aspiracijama.`;
   }
 }
