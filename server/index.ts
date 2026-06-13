@@ -14,7 +14,9 @@ const httpServer = createServer(app);
   }
 
   const port = parseInt(process.env.PORT || "5000", 10);
-  httpServer.listen({ port, host: "0.0.0.0", reusePort: true }, () => {
+  const listenOptions: any = { port, host: "0.0.0.0" };
+  if (process.platform !== "win32") listenOptions.reusePort = true;
+  httpServer.listen(listenOptions, () => {
     const time = new Date().toLocaleTimeString("en-US", {
       hour: "numeric", minute: "2-digit", second: "2-digit", hour12: true,
     });
