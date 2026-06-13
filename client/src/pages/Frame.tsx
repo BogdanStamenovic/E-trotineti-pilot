@@ -185,30 +185,6 @@ export const Frame = (): JSX.Element => {
           </motion.div>
         </div>
 
-        {/* Small-screen badge: placed after stats to push images downward on mobile */}
-        <motion.div
-          initial={{ opacity: 0, y: 10, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 0.7, type: "spring", stiffness: 200 }}
-          className="block lg:hidden rounded-2xl px-5 py-3.5 flex items-center gap-3 mx-auto mt-10 max-w-[92vw]"
-          style={{
-            ...glass,
-          }}
-        >
-          <img
-            src="/favicon.png"
-            alt="scooter"
-            className="w-8 h-8 flex-shrink-0 object-contain"
-          />
-          <div>
-            <div className="text-[13px] font-semibold" style={{ color: "#0A0A0A" }}>
-              Dualtron · Teverun · Kaabo
-            </div>
-            <div className="text-[11px]" style={{ color: "rgba(10,10,10,0.45)" }}>
-              3 premium brenda · nezavisni vodič
-            </div>
-          </div>
-        </motion.div>
 
         {/* Right — photo grid */}
         <div className="flex-1 flex justify-center lg:justify-end w-full lg:w-auto">
@@ -290,7 +266,7 @@ export const Frame = (): JSX.Element => {
         style={{ borderColor: "rgba(0,0,0,0.07)" }}
       >
         <p className="text-[12px]" style={{ color: "rgba(10,10,10,0.35)" }}>
-          © 2026 e-trotineti.rs — Nezavisni vodič za električne trotinete
+          © 2026 e-trotineti.rs — Team Dynamix
         </p>
         <div className="flex items-center gap-1.5">
           {["Dualtron", "Teverun", "Kaabo"].map((brand) => (

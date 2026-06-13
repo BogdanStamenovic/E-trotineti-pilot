@@ -226,21 +226,20 @@ function ScoreBar({ brand, percentage, delay }: { brand: Brand; percentage: numb
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <span
-            className="font-semibold text-[14px]"
-            style={{ color: "#0A0A0A", fontFamily: "Inter, Helvetica, sans-serif" }}
+            className="font-semibold"
+            style={{ fontSize: "clamp(14px, 3vw, 18px)", color: "#0A0A0A", fontFamily: "Inter, Helvetica, sans-serif" }}
           >
             {info.name}
           </span>
           <span
-            className="text-[12px]"
-            style={{ color: "rgba(10,10,10,0.45)", fontFamily: "Inter, Helvetica, sans-serif" }}
+            style={{ fontSize: "clamp(11px, 2.4vw, 13px)", color: "rgba(10,10,10,0.45)", fontFamily: "Inter, Helvetica, sans-serif" }}
           >
             {info.tagline}
           </span>
         </div>
         <span
-          className="font-bold text-[14px]"
-          style={{ color: info.color, fontFamily: "Inter, Helvetica, sans-serif" }}
+          className="font-bold"
+          style={{ fontSize: "clamp(13px, 3vw, 18px)", color: info.color, fontFamily: "Inter, Helvetica, sans-serif" }}
         >
           {percentage}%
         </span>
@@ -500,12 +499,13 @@ function ResultsScreen({ answers }: { answers: Record<string, string> }) {
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, type: "spring", stiffness: 200, damping: 18 }}
-              className="text-right flex-shrink-0"
+              className="text-right"
+              style={{ minWidth: 0 }}
             >
               <div
                 className="font-bold leading-none"
                 style={{
-                  fontSize: "clamp(36px, 7vw, 56px)",
+                  fontSize: "clamp(24px, 7vw, 56px)",
                   color: "#B53A32",
                   fontFamily: "Inter, Helvetica, sans-serif",
                 }}
@@ -513,8 +513,8 @@ function ResultsScreen({ answers }: { answers: Record<string, string> }) {
                 {countedConfidence}%
               </div>
               <div
-                className="text-[12px] mt-1"
-                style={{ color: "rgba(255,255,255,0.35)", fontFamily: "Inter, Helvetica, sans-serif" }}
+                className="mt-1"
+                style={{ fontSize: "clamp(10px, 2.4vw, 12px)", color: "rgba(255,255,255,0.35)", fontFamily: "Inter, Helvetica, sans-serif" }}
               >
                 Poklapanje
               </div>
