@@ -245,8 +245,7 @@ export const Frame = (): JSX.Element => {
               <img
                 src="/favicon.png"
                 alt="scooter"
-                className="w-8 h-8 rounded-xl flex-shrink-0 object-contain"
-                style={{ background: "rgba(0,0,0,0.85)" }}
+                className="w-8 h-8 flex-shrink-0 object-contain"
               />
               <div>
                 <div className="text-[13px] font-semibold" style={{ color: "#0A0A0A" }}>
