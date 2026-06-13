@@ -242,14 +242,12 @@ export const Frame = (): JSX.Element => {
                 whiteSpace: "nowrap",
               }}
             >
-              <div
-                className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ background: "rgba(181,58,50,0.10)" }}
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M8 2l1.5 3.5L13 6l-2.5 2.5.5 3.5L8 10.5 5 12l.5-3.5L3 6l3.5-.5L8 2z" fill="#B53A32" />
-                </svg>
-              </div>
+              <img
+                src="/favicon.png"
+                alt="scooter"
+                className="w-8 h-8 rounded-xl flex-shrink-0 object-contain"
+                style={{ background: "rgba(0,0,0,0.85)" }}
+              />
               <div>
                 <div className="text-[13px] font-semibold" style={{ color: "#0A0A0A" }}>
                   Dualtron · Teverun · Kaabo
