@@ -619,27 +619,86 @@ export function generatePersonalizedText(
   primary: Brand,
   secondary: Brand
 ): string {
-  const usageMap: Record<string, string> = {
-    city: "svakodnevnu gradsku vožnju",
-    mixed: "mešovitu gradsku i daljinsku vožnju",
-    weekend: "vikend avanture",
-    highperf: "visokoperformansnu vožnju",
-    offroad: "vožnju van asfalta",
+  // Helper to normalize answers (handle arrays)
+  const get = (key: string) => {
+    const a = answers[key as keyof typeof answers] as string | string[] | undefined;
+    if (!a) return undefined;
+    return Array.isArray(a) ? (a[0] as string) : (a as string);
   };
-  const rangeMap: Record<string, string> = {
-    under20: "kratke gradske ture",
-    "20to40": "vožnje srednje dužine",
-    "40to70": "duže ture",
-    over70: "duge performansne rute",
+
+  const usage = get("usage");
+  const range = get("range");
+  const performance = get("performance");
+  const personality = get("personality");
+  const priority = answers.priority
+    ? Array.isArray(answers.priority)
+      ? (answers.priority as string[])
+      : [(answers.priority as string)]
+    : [];
+
+  const usageSentences: Record<string, string> = {
+    city: "Preferirate svakodnevnu gradsku vožnju — cenite agilnost, prenosivost i praktična rešenja.",
+    mixed: "Mešovito korišćenje (grad + duže rute) zahteva dobar balans dometa, udobnosti i performansi.",
+    weekend: "Vikend avanture ukazuju na potrebu za izdržljivošću i sposobnošću za neasfaltirane staze.",
+    highperf: "Fokus na brzu vožnju pokazuje da su vam ubrzanje i vrhunske performanse važni.",
+    offroad: "Vožnja van asfalta znači da tražite robusna rešenja sa snažnim vešanjem i terenskim gumama.",
   };
-  const usageKey = Array.isArray(answers.usage) ? answers.usage[0] : (answers.usage as string | undefined);
-  const rangeKey = Array.isArray(answers.range) ? answers.range[0] : (answers.range as string | undefined);
-  const usage = usageMap[usageKey || ""] || "raznovrsnu vožnju";
-  const range = rangeMap[rangeKey || ""] || "različite distance";
+
+  const rangeSentences: Record<string, string> = {
+    under20: "Kratke ture ukazuju na prednost prenosivosti i okretljivosti.",
+    "20to40": "Srednje dužine zahtevaju balans dometa i upravljivosti.",
+    "40to70": "Duge ture znače da vam je važna baterija velikog kapaciteta i efikasnost.",
+    over70: "Veoma dugi dometi pokazuju jasnu potrebu za maksimalnim dometom i pouzdanošću baterije.",
+  };
+
+  const performanceSentences: Record<string, string> = {
+    notimportant: "Snaga nije prioritet — preferirate udobnost i praktičnost.",
+    balanced: "Tražite uravnotežen pristup koji kombinuje solidne performanse i udobnost.",
+    veryimportant: "Dobre performanse su vam važne — birate snažnije motore i jače ubrzanje.",
+    maximum: "Ciljate maksimalne performanse bez kompromisa — snažni motori i agresivna platforma.",
+  };
+
+  const personalitySentences: Record<string, string> = {
+    practical: "Cenite praktičnost i pouzdanost u svakodnevnoj upotrebi.",
+    tech: "Vrednujete napredne tehnološke funkcije i pametne sisteme.",
+    iconic: "Privlači vas moćan, ikoničan dizajn i status koji on donosi.",
+    anywhere: "Želite slobodu da idete bilo gde — svestran i pouzdan trotinet je ključan.",
+  };
+
+  const prioritySentences: Record<string, string> = {
+    comfort: "Udobnost vam je prioritet — meko vešanje i stabilna platforma su važni.",
+    domet: "Domet je važan — tražite veće baterije i efikasnost u vožnji.",
+    performance: "Performanse su prioritet — cenite snažne motore i brz odziv.",
+    adventure: "Avantura znači robusno vozilo koje podnosi grublji teren.",
+    stability: "Stabilnost je ključ — šira platforma i pouzdano vešanje.",
+    design: "Dizajn vam je bitan — tražite estetski i premium završetak.",
+  };
+
+  const sentences: string[] = [];
+  if (usage && usageSentences[usage]) sentences.push(usageSentences[usage]);
+  if (range && rangeSentences[range]) sentences.push(rangeSentences[range]);
+  if (performance && performanceSentences[performance]) sentences.push(performanceSentences[performance]);
+  if (personality && personalitySentences[personality]) sentences.push(personalitySentences[personality]);
+
+  // Add up to two distinct priority sentences
+  const added = new Set<string>();
+  for (const pr of priority) {
+    const s = prioritySentences[pr];
+    if (s && !added.has(s)) {
+      sentences.push(s);
+      added.add(s);
+    }
+    if (added.size >= 2) break;
+  }
+
   const p = brandInfo[primary];
   const s = brandInfo[secondary];
 
-  return `Na osnovu vaše preferencije za ${usage} i ${range}, ${p.name} se izdvaja kao najjači izbor za vaš profil. Vaši odgovori ukazuju na dosleden sklad sa ${p.tagline.toLowerCase()} — što definiše iskustvo koje ${p.name} pruža. ${s.name} bi vam takođe odlično odgovarao kao ubedljiv drugi izbor koji deli nekoliko vaših prioriteta.`;
+  // Brand tie-in
+  const brandTie = `${p.name} se poklapa sa vašim izborima zahvaljujući ${p.tagline.toLowerCase()}. ${s.name} ostaje solidna alternativa sa sličnim vrednostima.`;
+  sentences.push(brandTie);
+
+  return sentences.join(" ");
 }
 
 export function generateExpertAssessment(
