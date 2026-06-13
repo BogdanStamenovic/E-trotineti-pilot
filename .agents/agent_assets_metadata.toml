@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "W0Sy6kYMFr2wl3KNJje3q"
+uri = "file://QUIZ_ENGINE_DOCS.md"
+type = "text"
+title = "Quiz Engine Documentation"
