@@ -38,7 +38,7 @@ Svaki brend ima boju, tagline, kratak opis i emoji koji se koriste na ekranu rez
 | `highperf` | Brza vožnja | Dualtron +3, Teverun +1 |
 | `offroad` | Vožnja van asfalta | Kaabo +4 |
 
-**Šta otkriva:** Primarni kontekst vožnje — da li korisnik treba pametnu gradsku efikasnost, dugometražne ture ili terenske sposobnosti.
+**Šta otkriva:** Šta je Vama vožnja? — da li korisnik treba pametnu gradsku efikasnost, dugometražne ture ili terenske sposobnosti.
 
 ---
 
@@ -80,7 +80,7 @@ Svaki brend ima boju, tagline, kratak opis i emoji koji se koriste na ekranu rez
 | `iconic` | "Hoću nešto moćno i ikonično." | Status i performansni identitet | Dualtron +4 |
 | `anywhere` | "Hoću da idem svuda." | Sloboda i istraživanje | Kaabo +4 |
 
-**Šta otkriva:** Identitet vozača i usklađenost sa vrednostima brenda. Svaka od tri ne-`practical` opcije je čisti 4-poeni signal ka jednom brendu. Ovo je najjače identitetsko pitanje u kviziću.
+**Šta otkriva:** Karakter vozača i usklađenost sa vrednostima brenda. Svaka od tri ne-`practical` opcije je čisti 4-poeni signal ka jednom brendu. Ovo je najjače identitetsko pitanje u kviziću.
 
 ---
 
@@ -97,6 +97,8 @@ Svaki brend ima boju, tagline, kratak opis i emoji koji se koriste na ekranu rez
 | `design` | Dizajn | Dualtron +3, Teverun +2 |
 
 **Šta otkriva:** Finalna potvrda vrednosti koja pojačava (ili ponekad kontrastira) ranije signale. `design` je jedina opcija koja značajno nagrađuje dva brenda, što odražava da i Dualtron i Teverun imaju snažan estetski identitet.
+
+Napomena: Ovaj korak podržava višestruki izbor — korisnik može izabrati više prioriteta istovremeno.
 
 ---
 

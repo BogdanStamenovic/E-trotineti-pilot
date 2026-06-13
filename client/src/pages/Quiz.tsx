@@ -428,7 +428,7 @@ function HybridCard({
   );
 }
 
-function ResultsScreen({ answers }: { answers: Record<string, string> }) {
+function ResultsScreen({ answers }: { answers: Record<string, string | string[]> }) {
   const [, setLocation] = useLocation();
   const { scores, percentages, primary, secondary, confidence } = calculateResults(answers);
   const isEdgeCase = detectEdgeCase(scores, percentages, primary, secondary);
@@ -551,29 +551,8 @@ function ResultsScreen({ answers }: { answers: Record<string, string> }) {
             className="text-[14px] leading-relaxed"
             style={{ color: "rgba(255,255,255,0.5)", fontFamily: "Inter, Helvetica, sans-serif" }}
           >
-            {info.description}
-          </motion.p>
-          {info.url && (
-            <div className="mt-4">
-              <a
-                href={info.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-[13px] font-semibold"
-                style={{
-                  background: "#fff",
-                  color: "#0A0A0A",
-                  textDecoration: "none",
-                  fontFamily: "Inter, Helvetica, sans-serif",
-                }}
-              >
-                Pogledaj modele i cene
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M2 7h10M8 3l4 4-4 4" stroke="#0A0A0A" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-            </div>
-          )}
+              {info.description}
+            </motion.p>
         </div>
       </motion.div>
 
@@ -716,12 +695,34 @@ function QuizStepView({
   step: QuizStep;
   stepIndex: number;
   totalSteps: number;
-  onAnswer: (stepId: string, optionId: string) => void;
+  onAnswer: (stepId: string, optionId: string | string[]) => void;
 }) {
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<string | string[] | null>(null);
   const insightRef = useRef<HTMLDivElement>(null);
 
+  // Reset selection when step changes
+  useEffect(() => {
+    setSelected(null);
+  }, [step.id]);
+
   function handleSelect(optionId: string) {
+    if (step.id === "priority") {
+      setSelected((prev) => {
+        const prevArr = Array.isArray(prev) ? [...prev] : [];
+        const wasEmpty = prevArr.length === 0;
+        const idx = prevArr.indexOf(optionId);
+        if (idx === -1) prevArr.push(optionId);
+        else prevArr.splice(idx, 1);
+        if (wasEmpty) {
+          setTimeout(() => {
+            insightRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }, 200);
+        }
+        return prevArr.length ? prevArr : null;
+      });
+      return;
+    }
+
     setSelected(optionId);
     if (!selected) {
       setTimeout(() => {
@@ -768,7 +769,7 @@ function QuizStepView({
           <OptionCard
             key={option.id}
             option={option}
-            selected={selected === option.id}
+            selected={Array.isArray(selected) ? selected.includes(option.id) : selected === option.id}
             onClick={() => handleSelect(option.id)}
           />
         ))}
@@ -780,7 +781,7 @@ function QuizStepView({
             <InsightCard
               title={step.insightTitle}
               text={step.insight}
-              onContinue={() => onAnswer(step.id, selected)}
+              onContinue={() => onAnswer(step.id, selected as string | string[])}
               isLast={stepIndex === totalSteps - 1}
             />
           )}
@@ -792,11 +793,11 @@ function QuizStepView({
 
 export default function Quiz() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
   const [showResults, setShowResults] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  function handleAnswer(stepId: string, optionId: string) {
+  function handleAnswer(stepId: string, optionId: string | string[]) {
     const newAnswers = { ...answers, [stepId]: optionId };
     setAnswers(newAnswers);
 

@@ -53,7 +53,7 @@ export const quizSteps: QuizStep[] = [
   {
     id: "usage",
     question: "Kako planirate da vozite?",
-    insightTitle: "Kontekst vožnje",
+    insightTitle: "Šta je Vama vožnja?",
     insight:
       "Vaša primarna namena određuje koje karakteristike su najvažnije. Gradski vozači imaju koristi od pametne povezivosti i efikasnog upravljanja energijom. Entuzijasti performansi zahtevaju sirovu snagu i domet. Avanturisti iznad svega cene izdržljivost i sposobnost vožnje van asfalta.",
     options: [
@@ -82,7 +82,7 @@ export const quizSteps: QuizStep[] = [
     question: "Koliko vam je važna snaga motora?",
     insightTitle: "Snaga i performanse",
     insight:
-      "Visokoperformansni trotineti obično imaju dva motora, što pruža odlično ubrzanje i veće brzine. Idealni su za iskusne vozače koji prioritizuju dinamičke performanse. Uravnotežene opcije nude odličan svakodnevni učinak bez ekstrema trkačke platforme.",
+      "Visokoperformansni trotineti imaju dva motora, što pruža odlično ubrzanje i veće brzine. Idealni su za iskusne vozače koji prioritizuju dinamičke performanse. Uravnotežene opcije nude odličan svakodnevni učinak bez ekstrema trkačke platforme.",
     options: [
       { id: "notimportant", label: "Nije važno", sublabel: "Udobnost pre brzine", scores: { teverun: 1, kaabo: 1 } },
       { id: "balanced", label: "Uravnoteženo", sublabel: "Sve i svašta", scores: { teverun: 2, kaabo: 2 } },
@@ -93,7 +93,7 @@ export const quizSteps: QuizStep[] = [
   {
     id: "personality",
     question: "Koja rečenica vas najbolje opisuje?",
-    insightTitle: "Profil vozača",
+    insightTitle: "Karakter vozača",
     insight:
       "Najbolji trotinet je produžetak vašeg karaktera. Identitet brenda je jednako važan kao tehnički podaci — kada vaša ličnost odgovara filozofiji brenda, iskustvo vožnje postaje zaista lično.",
     options: [
@@ -531,7 +531,7 @@ export const hybridModels: HybridModel[] = [
 
 // ─── Scoring ─────────────────────────────────────────────────────────────────
 
-export function calculateResults(answers: Record<string, string>): {
+export function calculateResults(answers: Record<string, string | string[]>): {
   scores: ScoreMap;
   percentages: ScoreMap;
   primary: Brand;
@@ -541,12 +541,15 @@ export function calculateResults(answers: Record<string, string>): {
   const scores: ScoreMap = { dualtron: 0, teverun: 0, kaabo: 0 };
 
   quizSteps.forEach((step) => {
-    const answerId = answers[step.id];
-    if (!answerId) return;
-    const option = step.options.find((o) => o.id === answerId);
-    if (!option) return;
-    (Object.entries(option.scores) as [Brand, number][]).forEach(([brand, score]) => {
-      scores[brand] += score;
+    const answer = answers[step.id];
+    if (!answer) return;
+    const answerIds = Array.isArray(answer) ? answer : [answer];
+    answerIds.forEach((answerId) => {
+      const option = step.options.find((o) => o.id === answerId);
+      if (!option) return;
+      (Object.entries(option.scores) as [Brand, number][]).forEach(([brand, score]) => {
+        scores[brand] += score;
+      });
     });
   });
 
@@ -583,7 +586,7 @@ export function detectEdgeCase(
 // ─── Hybrid recommendation ────────────────────────────────────────────────────
 
 export function getHybridRecommendation(
-  answers: Record<string, string>,
+  answers: Record<string, string | string[]>,
   primary: Brand,
   secondary: Brand
 ): HybridModel | null {
@@ -594,9 +597,14 @@ export function getHybridRecommendation(
 
   const confWeight = { high: 3, medium: 2, low: 1 };
   const scored = candidates.map((model) => {
-    const matches = model.conditions.filter((cond) =>
-      cond.options.includes(answers[cond.stepId])
-    ).length;
+    const matches = model.conditions.filter((cond) => {
+      const ans = answers[cond.stepId];
+      if (!ans) return false;
+      if (Array.isArray(ans)) {
+        return cond.options.some((o) => ans.includes(o));
+      }
+      return cond.options.includes(ans);
+    }).length;
     return { model, score: matches * 10 + confWeight[model.confidence] };
   });
 
@@ -607,7 +615,7 @@ export function getHybridRecommendation(
 // ─── Personalized text ────────────────────────────────────────────────────────
 
 export function generatePersonalizedText(
-  answers: Record<string, string>,
+  answers: Record<string, string | string[]>,
   primary: Brand,
   secondary: Brand
 ): string {
@@ -624,9 +632,10 @@ export function generatePersonalizedText(
     "40to70": "duže ture",
     over70: "duge performansne rute",
   };
-
-  const usage = usageMap[answers.usage] || "raznovrsnu vožnju";
-  const range = rangeMap[answers.range] || "različite distance";
+  const usageKey = Array.isArray(answers.usage) ? answers.usage[0] : (answers.usage as string | undefined);
+  const rangeKey = Array.isArray(answers.range) ? answers.range[0] : (answers.range as string | undefined);
+  const usage = usageMap[usageKey || ""] || "raznovrsnu vožnju";
+  const range = rangeMap[rangeKey || ""] || "različite distance";
   const p = brandInfo[primary];
   const s = brandInfo[secondary];
 
@@ -634,11 +643,11 @@ export function generatePersonalizedText(
 }
 
 export function generateExpertAssessment(
-  answers: Record<string, string>,
+  answers: Record<string, string | string[]>,
   primary: Brand
 ): string {
-  const perf = answers.performance;
-  const personality = answers.personality;
+  const perf = Array.isArray(answers.performance) ? answers.performance[0] : (answers.performance as string | undefined);
+  const personality = Array.isArray(answers.personality) ? answers.personality[0] : (answers.personality as string | undefined);
 
    if (primary === "dualtron") {
     return `Uzimajući u obzir vaš stil vožnje i očekivanja, preporučujemo fokus na premium performansne platforme koje ne prave kompromise po pitanju snage. Vaš stil vožnje ukazuje na snažnu preferenciju za ${perf === "maximum" ? "maksimalnim performansama i ikoničnim dizajnom" : "vrhunskim performansama uz jak identitet vozača"}. Dualtronova inženjerska filozofija — izgrađena oko sirove sposobnosti i odane globalne zajednice — precizno se poklapa sa tipom vozača kojeg vi predstavljate.`;
