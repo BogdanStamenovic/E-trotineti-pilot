@@ -1,0 +1,383 @@
+Project Overview
+
+Create a highly polished, interactive, mobile-first web experience called:
+
+"Which Electric Scooter Is Right For Me?"
+
+This is a pilot UX/UI concept for e-trotineti.rs, a future e-mobility hub that helps users discover whether they are better suited for Dualtron, Teverun, or Kaabo.
+
+The goal is NOT to create an ecommerce store.
+
+The goal is to:
+
+educate users,
+guide them through a decision-making process,
+help them understand differences between brands,
+recommend the most suitable brand and scooter category,
+provide a professional expert-style conclusion.
+
+The experience should feel like a premium digital product, not a traditional website.
+
+Visual Direction
+
+Use the provided e-trotineti.rs branding as inspiration.
+
+Color Palette
+
+Primary Background:
+
+Warm Light Beige: #E6DED7
+
+Secondary Background:
+
+Soft Ivory: #F2ECE6
+
+Text:
+
+Rich Black: #0A0A0A
+
+Accent Red:
+
+#B53A32
+
+Secondary Red:
+
+#8D2A24
+
+Glass Highlight:
+
+rgba(255,255,255,0.35)
+
+Border:
+
+rgba(0,0,0,0.08)
+Design Style
+
+Combine:
+
+Apple Liquid Glass
+Modern Editorial Design
+Premium Automotive UX
+Tesla Configurator Feel
+Futuristic Mobility Brand
+
+Requirements:
+
+frosted glass panels
+layered depth
+subtle blur
+soft shadows
+smooth transitions
+premium typography
+cinematic spacing
+large headlines
+elegant micro-interactions
+
+Avoid:
+
+generic SaaS appearance
+dashboard look
+cheap gradients
+cluttered layouts
+
+The experience should feel like:
+
+"Apple meets Porsche meets Future Mobility."
+
+User Journey
+
+The application should behave like an interactive advisor.
+
+Instead of a simple form, create a conversational decision journey.
+
+Step 1
+
+Hero Screen
+
+Headline:
+
+"Find the electric scooter that matches your riding style."
+
+Subheadline:
+
+"Not every rider needs the same machine. Let's find yours."
+
+CTA:
+
+"Start the Guide"
+
+Step 2
+
+Usage Type
+
+Question:
+
+"How do you plan to ride?"
+
+Options:
+
+Daily city commuting
+Mixed city and longer rides
+Weekend adventure
+High-performance riding
+Off-road exploration
+
+Selection should animate beautifully.
+
+Step 3
+
+Range Preference
+
+Question:
+
+"How far do you usually travel?"
+
+Options:
+
+Under 20 km
+20–40 km
+40–70 km
+70+ km
+Step 4
+
+Performance
+
+Question:
+
+"How important is power?"
+
+Options:
+
+Not important
+Balanced
+Very important
+Maximum performance
+Step 5
+
+Riding Personality
+
+Question:
+
+"Which statement sounds most like you?"
+
+Options:
+
+A.
+"I want something practical."
+
+B.
+"I love technology."
+
+C.
+"I want something powerful and iconic."
+
+D.
+"I want to go anywhere."
+
+Step 6
+
+Priority
+
+Question:
+
+"What matters most?"
+
+Options:
+
+Comfort
+Technology
+Performance
+Adventure
+Stability
+Design
+Educational Layer
+
+This is extremely important.
+
+The experience should not only collect answers.
+
+It should educate users after every step.
+
+Example:
+
+When user selects performance:
+
+Show a floating glass card:
+
+"Performance scooters typically offer stronger acceleration, dual motors and larger batteries. They are ideal for experienced riders."
+
+Each step should contain educational insights.
+
+Brand Logic
+
+Respect these brand identities.
+
+Dualtron
+
+Positioning:
+
+Premium Performance
+
+Characteristics:
+
+iconic
+enthusiast culture
+status
+raw power
+community
+identity
+
+Message:
+
+"This is more than a scooter. It's a lifestyle."
+
+Teverun
+
+Positioning:
+
+Smart Performance
+
+Characteristics:
+
+futuristic
+technological
+innovative
+cleaner design
+younger energy
+
+Message:
+
+"The next generation of performance scooters."
+
+Kaabo
+
+Positioning:
+
+Adventure & Durability
+
+Characteristics:
+
+rugged
+stable
+off-road capable
+durable
+confidence inspiring
+
+Message:
+
+"When the road ends, the ride begins."
+
+IMPORTANT:
+
+Never position Teverun or Kaabo as weaker or cheaper alternatives.
+
+The recommendation must be based on personality and riding style.
+
+Recommendation Engine
+
+Create a dynamic scoring system.
+
+Every answer should contribute points to:
+
+Dualtron
+Teverun
+Kaabo
+
+At the end calculate:
+
+primary recommendation
+secondary recommendation
+
+Generate results dynamically.
+
+Results Screen
+
+Create a premium reveal animation.
+
+Show:
+
+Your Best Match
+
+Brand Name
+
+Confidence Score
+
+Example:
+
+92% Match
+
+Why This Fits You
+
+Generate a personalized explanation based on user answers.
+
+Use natural language.
+
+Example:
+
+"Based on your preference for long-range riding, advanced technology and balanced performance, Teverun appears to be the strongest match for your riding profile."
+
+Expert Assessment
+
+Create a professional expert-style paragraph.
+
+This section should feel like a real consultation.
+
+Title:
+
+"Professional Opinion"
+
+Example:
+
+"Considering your riding habits and expectations, we would recommend focusing on modern smart-performance platforms rather than traditional commuting scooters. Your profile indicates a preference for advanced technology, longer rides and future-oriented design."
+
+Generate this dynamically.
+
+Brand Comparison
+
+Show:
+
+Dualtron
+Teverun
+Kaabo
+
+With visual score bars.
+
+Interactions
+
+Implement:
+
+Framer Motion animations
+Smooth page transitions
+Scroll-based reveals
+Glass morphism effects
+Progress indicator
+Dynamic score updates
+Animated recommendation reveal
+Magnetic buttons
+Hover glow effects
+Technical Requirements
+
+Use:
+
+React
+TypeScript
+TailwindCSS
+Framer Motion
+
+Architecture:
+
+reusable components
+modular scoring engine
+responsive design
+mobile-first
+Deliverable Quality
+
+The final experience should feel like a premium startup product ready to be presented to investors.
+
+The user should feel:
+
+"I just went through a personalized electric scooter consultation."
+
+Not:
+
+"I filled out a form."

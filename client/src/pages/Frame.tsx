@@ -1,15 +1,18 @@
-import { Button } from "@/components/ui/button";
+import { useLocation } from "wouter";
+import { motion } from "framer-motion";
 
 const stats = ["120+ modela", "3 premium brenda", "Nezavisni vodiči"];
 
 export const Frame = (): JSX.Element => {
+  const [, setLocation] = useLocation();
+
   return (
     <main className="min-h-screen w-full bg-[#07070a]">
       <header className="h-[56px] w-full bg-[#ebded4]">
         <div className="flex h-full items-start">
           <img
             className="ml-1 mt-1 h-[42px] w-auto object-contain"
-            alt="Image"
+            alt="e-trotineti.rs"
             src="/figmaAssets/image-2.png"
           />
         </div>
@@ -23,12 +26,18 @@ export const Frame = (): JSX.Element => {
             Uporedi modele, domet, snagu i cenu. Pronađi idealan Dualtron,
             Teverun ili Kaabo za grad, brzinu i avanturu.
           </p>
-          <Button
+          <motion.button
+            data-testid="button-start-guide"
             type="button"
-            className="mt-8 h-auto min-w-[156px] rounded-xl bg-[#e53935] px-10 py-4 [font-family:'Inter',Helvetica] text-[18px] font-semibold text-white shadow-none hover:bg-[#d63030]"
+            onClick={() => setLocation("/quiz")}
+            whileHover={{ scale: 1.03, backgroundColor: "#d63030" }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 400, damping: 20 }}
+            className="mt-8 h-auto min-w-[156px] rounded-xl px-10 py-4 [font-family:'Inter',Helvetica] text-[18px] font-semibold text-white"
+            style={{ background: "#e53935", border: "none", cursor: "pointer" }}
           >
             Pokreni vodič
-          </Button>
+          </motion.button>
           <ul className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 [font-family:'Inter',Helvetica] text-[15px] font-normal leading-normal tracking-[0] text-[#a5a5a5]">
             {stats.map((item, index) => (
               <li key={item} className="flex items-center">
@@ -43,7 +52,7 @@ export const Frame = (): JSX.Element => {
         <div className="flex w-full items-start justify-center pt-[82px] md:justify-end">
           <img
             className="h-auto w-full max-w-[429px] rounded-t-[9999px] object-cover"
-            alt="Image"
+            alt="Electric scooter"
             src="/figmaAssets/image-3.png"
           />
         </div>
