@@ -5,7 +5,7 @@ const stats = ["120+ modela", "3 premium brenda", "Nezavisni vodiči"];
 export const Frame = (): JSX.Element => {
   return (
     <main className="min-h-screen w-full bg-[#07070a]">
-      <header className="h-[56px] w-full bg-[#d9cec5]">
+      <header className="h-[56px] w-full bg-[#ebded4]">
         <div className="flex h-full items-start">
           <img
             className="ml-1 mt-1 h-[42px] w-auto object-contain"
