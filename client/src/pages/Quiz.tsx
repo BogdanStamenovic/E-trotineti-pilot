@@ -2,6 +2,15 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "wouter";
 import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import {
   quizSteps,
   brandInfo,
   calculateResults,
@@ -47,6 +56,7 @@ function useCountUp(target: number, duration = 1400, start = false) {
   }, [target, duration, start]);
   return value;
 }
+ 
 
 function ProgressBar({ current, total }: { current: number; total: number }) {
   return (
@@ -438,6 +448,26 @@ function ResultsScreen({ answers }: { answers: Record<string, string | string[]>
   const info = brandInfo[primary];
   const [revealBars, setRevealBars] = useState(false);
   const countedConfidence = useCountUp(confidence, 1600, true);
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(text);
+      setTimeout(() => setCopied(null), 2000);
+    } catch (e) {
+      try {
+        const el = document.createElement("textarea");
+        el.value = text;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+        setCopied(text);
+        setTimeout(() => setCopied(null), 2000);
+      } catch {}
+    }
+  };
 
   useEffect(() => {
     const t = setTimeout(() => setRevealBars(true), 600);
@@ -537,6 +567,67 @@ function ResultsScreen({ answers }: { answers: Record<string, string | string[]>
           >
             "{info.message}"
           </motion.p>
+
+          <div className="mt-5">
+            <Dialog>
+              <DialogTrigger asChild>
+                <button
+                  data-testid="button-schedule"
+                  className="rounded-xl px-4 py-3 font-semibold"
+                  style={{
+                    background: "#fff",
+                    color: "#0A0A0A",
+                    fontFamily: "Inter, Helvetica, sans-serif",
+                    border: "1.5px solid rgba(255,255,255,0.12)",
+                    cursor: "pointer",
+                  }}
+                >
+                  Zakaži test vožnju 
+                </button>
+              </DialogTrigger>
+
+              <DialogContent className="overflow-hidden p-0 shadow-lg">
+                <div className="rounded-lg bg-popover text-popover-foreground p-6">
+                  <DialogHeader>
+                    <DialogTitle>Zakaži test vožnju</DialogTitle>
+                    <DialogDescription>
+                      Call Centar: <a
+                        href="#"
+                        onClick={(e) => { e.preventDefault(); copyToClipboard("+381112831360"); }}
+                        className="underline cursor-pointer"
+                      >+381 11 2831360</a>
+                      {copied === "+381112831360" && (
+                        <span className="ml-2 text-sm text-emerald-500">Kopirano</span>
+                      )}
+                      <br />
+                      Email: <a
+                        href="#"
+                        onClick={(e) => { e.preventDefault(); copyToClipboard("info@dualtron.rs"); }}
+                        className="underline cursor-pointer"
+                      >info@dualtron.rs</a>
+                      {copied === "info@dualtron.rs" && (
+                        <span className="ml-2 text-sm text-emerald-500">Kopirano</span>
+                      )}
+                    </DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter>
+                    <a
+                      href="tel:+381112831360"
+                      className="inline-flex items-center justify-center rounded-md px-4 py-2 bg-[#B53A32] text-white font-semibold"
+                    >
+                      Pozovi
+                    </a>
+                    <a
+                      href="mailto:info@dualtron.rs"
+                      className="inline-flex items-center justify-center rounded-md px-4 py-2 border border-gray-200 ml-2"
+                    >
+                      Pošalji mail
+                    </a>
+                  </DialogFooter>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
 
         {/* Brand description strip */}
@@ -665,6 +756,8 @@ function ResultsScreen({ answers }: { answers: Record<string, string | string[]>
         >
           Ponovi kviz
         </motion.button>
+        
+
         <motion.button
           data-testid="button-home"
           whileHover={{ scale: 1.02 }}
